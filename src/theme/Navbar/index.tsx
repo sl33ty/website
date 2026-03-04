@@ -1,0 +1,513 @@
+import React, {useState, useRef, useEffect, useCallback} from 'react';
+import NavbarOriginal from '@theme-original/Navbar';
+import Link from '@docusaurus/Link';
+import {useColorMode} from '@docusaurus/theme-common';
+import {useLocation} from '@docusaurus/router';
+import SearchBar from '@theme/SearchBar';
+import styles from './DocsNavbar.module.css';
+
+function ArrowLogo() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="36" viewBox="0 0 657.38 193.42">
+      <path fill="currentColor" d="M162.9,120.1l-50.36-11.17-31.09,84.49-31.09-84.49L0,120.1,81.45,0l81.45,120.1Z"></path>
+      <path fill="currentColor" d="M183.1,151.64l41.23-106.46,25.25-3.68,43.27,110.14h-28.72l-6.99-20.98-39.39,1.87-6.37,19.12h-28.28ZM225.07,110.59l24.96-1.57-12.27-36.4-12.69,37.97h0Z"></path>
+      <path fill="currentColor" d="M359.06,68.72v28.28c-1.78-.65-3.68-1.1-5.69-1.3-.83-.09-1.69-.12-2.58-.12-6.08,0-11.29,2.05-15,5.57-3.79,3.59-7.23,8.68-7.23,14.73v35.8h-25.46v-81.36l25.04-3.97v12.03c7.29-6.19,16.51-9.9,26.56-9.9,1.48,0,2.93.09,4.36.24Z"></path>
+      <path fill="currentColor" d="M426.37,68.72v28.28c-1.78-.65-3.68-1.1-5.69-1.3-.83-.09-1.69-.12-2.58-.12-6.08,0-11.29,2.05-15,5.57-3.79,3.59-7.23,8.68-7.23,14.73v35.8h-25.46v-81.36l25.04-3.97v12.03c7.29-6.19,16.51-9.9,26.56-9.9,1.48,0,2.93.09,4.36.24Z"></path>
+      <path fill="currentColor" d="M578.54,81.37l19.21-2.52,12.51,35.6,14.46-47.16,32.66-4.53-32.31,89.15h-22.58l-14.23-37.11-10.97,36.78h-22.35l-28.31-79.85,29.05-3.82,11.91,45.97,11-32.54h-.06v.03h0Z"></path>
+      <path fill="currentColor" d="M479.22,151.64c-25.05,0-45.34-19.09-45.34-42.65s20.29-42.65,45.34-42.65,45.34,19.09,45.34,42.65-19.99,42.65-45.34,42.65ZM479.22,129.28c11.64,0,19.69-8.35,19.69-20.29s-8.05-20.29-19.69-20.29-19.69,8.65-19.69,20.29,8.35,20.29,19.69,20.29h0Z"></path>
+    </svg>
+  );
+}
+
+function GitHubIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"></path>
+    </svg>
+  );
+}
+
+function DiscordIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.1.1 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.1 16.1 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02M8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12m6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12"></path>
+    </svg>
+  );
+}
+
+function SunIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" aria-hidden>
+      <path d="M256 387c-8.5 0-15.4 6.9-15.4 15.4v46.2c0 8.5 6.9 15.4 15.4 15.4s15.4-6.9 15.4-15.4v-46.2c0-8.5-6.9-15.4-15.4-15.4z" fill="currentColor"/><path d="M256 48c-8.5 0-15.4 6.9-15.4 15.4v46.2c0 8.5 6.9 15.4 15.4 15.4s15.4-6.9 15.4-15.4V63.4c0-8.5-6.9-15.4-15.4-15.4z" fill="currentColor"/><path d="M125 256c0-8.5-6.9-15.4-15.4-15.4H63.4c-8.5 0-15.4 6.9-15.4 15.4s6.9 15.4 15.4 15.4h46.2c8.5 0 15.4-6.9 15.4-15.4z" fill="currentColor"/><path d="M448.6 240.6h-46.2c-8.5 0-15.4 6.9-15.4 15.4s6.9 15.4 15.4 15.4h46.2c8.5 0 15.4-6.9 15.4-15.4s-6.9-15.4-15.4-15.4z" fill="currentColor"/><path d="M152.5 344.1c-4.1 0-8 1.6-10.9 4.5l-32.7 32.7c-2.9 2.9-4.5 6.8-4.5 10.9s1.6 8 4.5 10.9c2.9 2.9 6.8 4.5 10.9 4.5 4.1 0 8-1.6 10.9-4.5l32.7-32.7c6-6 6-15.8 0-21.8-2.9-2.9-6.8-4.5-10.9-4.5z" fill="currentColor"/><path d="M359.5 167.9c4.1 0 8-1.6 10.9-4.5l32.7-32.7c2.9-2.9 4.5-6.8 4.5-10.9s-1.6-8-4.5-10.9c-2.9-2.9-6.8-4.5-10.9-4.5-4.1 0-8 1.6-10.9 4.5l-32.7 32.7c-2.9 2.9-4.5 6.8-4.5 10.9s1.6 8 4.5 10.9c2.9 2.9 6.8 4.5 10.9 4.5z" fill="currentColor"/><path d="M130.7 108.9c-2.9-2.9-6.8-4.5-10.9-4.5-4.1 0-8 1.6-10.9 4.5-2.9 2.9-4.5 6.8-4.5 10.9 0 4.1 1.6 8 4.5 10.9l32.7 32.7c2.9 2.9 6.8 4.5 10.9 4.5 4.1 0 8-1.6 10.9-4.5 2.9-2.9 4.5-6.8 4.5-10.9s-1.6-8-4.5-10.9l-32.7-32.7z" fill="currentColor"/><path d="M370.4 348.6c-2.9-2.9-6.8-4.5-10.9-4.5-4.1 0-8 1.6-10.9 4.5-6 6-6 15.8 0 21.8l32.7 32.7c2.9 2.9 6.8 4.5 10.9 4.5 4.1 0 8-1.6 10.9-4.5 2.9-2.9 4.5-6.8 4.5-10.9s-1.6-8-4.5-10.9l-32.7-32.7z" fill="currentColor"/><path d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96z" fill="currentColor"/>
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+      <path fill="currentColor" d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22C6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981"/>
+    </svg>
+  );
+}
+
+function ThemeToggle() {
+  const {colorMode, setColorMode} = useColorMode();
+  const isDark = colorMode === 'dark';
+
+  return (
+    <div className={styles.themeToggle}>
+      <button
+        className={styles.iconButton}
+        type="button"
+        onClick={() => setColorMode(isDark ? 'light' : 'dark')}
+        aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+      >
+        <span className={styles.themeIconWrapper}>
+          <span className={`${styles.themeIcon} ${styles.sunIcon}`}>
+            <SunIcon />
+          </span>
+          <span className={`${styles.themeIcon} ${styles.moonIcon}`}>
+            <MoonIcon />
+          </span>
+        </span>
+      </button>
+      <span className={styles.tooltip}>Toggle theme</span>
+    </div>
+  );
+}
+
+function MenuIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  );
+}
+
+function EllipsisIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <circle cx="5" cy="12" r="2" />
+      <circle cx="12" cy="12" r="2" />
+      <circle cx="19" cy="12" r="2" />
+    </svg>
+  );
+}
+
+function LinksDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [open]);
+
+  return (
+    <div className={styles.linksDropdown} ref={ref}>
+      <button
+        className={styles.iconButton}
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-label="Community links"
+      >
+        <EllipsisIcon />
+      </button>
+      {open && (
+        <div className={styles.dropdownMenu}>
+          <a
+            href="https://github.com/Arrow-air"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.dropdownItem}
+          >
+            <GitHubIcon /> GitHub
+          </a>
+          <a
+            href="https://discord.com/invite/arrow"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.dropdownItem}
+          >
+            <DiscordIcon /> Discord
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function DocsIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M4 3h2v18H4zm14 0H7v18h11c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-2 6h-6V8h6zm0-2h-6V6h6z"/>
+    </svg>
+  );
+}
+
+function QuiverIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden>
+      <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 10h4v4h-4zm0 0L6.5 6.5M9.96 6A3.5 3.5 0 1 0 6 9.96m8 .04l3.5-3.5m.5 3.46A3.5 3.5 0 1 0 14.04 6M14 14l3.5 3.5m-3.46.5A3.5 3.5 0 1 0 18 14.04M10 14l-3.5 3.5M6 14.04A3.5 3.5 0 1 0 9.96 18"/>
+    </svg>
+  );
+}
+
+function SpearheadIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden>
+      <path d="M17.615 2.55a4.5 4.5 0 0 0-3.23 0L11.3 3.736l13 5l4.485-1.725a3.3 3.3 0 0 0-.868-.499zm3.9 7.258l-13.001-5l-4.43 1.704q-.481.186-.87.5L16 11.928zM2 9.545q0-.422.105-.818L15 13.687v15.95a4.5 4.5 0 0 1-.615-.187L4.083 25.488A3.25 3.25 0 0 1 2 22.455zM17.615 29.45q-.302.117-.615.188V13.687l12.895-4.96q.104.396.105.818v12.91a3.25 3.25 0 0 1-2.083 3.033z"/>
+    </svg>
+  );
+}
+
+
+function ChevronRightIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  );
+}
+
+function ChevronDownIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
+const QUICK_LINKS = [
+  {
+    label: 'Main Site',
+    href: 'https://www.arrowair.com',
+    external: true,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Community',
+    href: 'https://www.arrowair.com/community',
+    external: true,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Engineering',
+    href: 'https://www.arrowair.com/engineering',
+    external: true,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Bounty Board',
+    href: '/bounty',
+    external: false,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M12 16q-.825 0-1.412-.587T10 14t.588-1.412T12 12t1.413.588T14 14t-.587 1.413T12 16M7.375 7h9.25l2-4H5.375zM8.4 21h7.2q2.25 0 3.825-1.562T21 15.6q0-.95-.325-1.85t-.925-1.625L17.15 9H6.85l-2.6 3.125q-.6.725-.925 1.625T3 15.6q0 2.275 1.563 3.838T8.4 21"/>
+      </svg>
+    ),
+  },
+];
+
+function QuickLinksDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      className={styles.linksDropdown}
+      ref={ref}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        className={styles.mainSiteLink}
+        type="button"
+        aria-label="Quick links"
+        aria-expanded={open}
+      >
+        Quick Links
+        <span className={`${styles.chevronIcon} ${open ? styles.chevronOpen : ''}`}>
+          <ChevronDownIcon />
+        </span>
+      </button>
+      {open && (
+        <div className={styles.dropdownMenu}>
+          {QUICK_LINKS.map((link, i) => (
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.dropdownItem}
+                style={{ animationDelay: `${i * 0.045}s` }}
+                onClick={() => setOpen(false)}
+              >
+                <span className={styles.dropdownItemIcon}>{link.icon}</span>
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={styles.dropdownItem}
+                style={{ animationDelay: `${i * 0.045}s` }}
+                onClick={() => setOpen(false)}
+              >
+                <span className={styles.dropdownItemIcon}>{link.icon}</span>
+                {link.label}
+              </Link>
+            )
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FlightTrackingIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98z"/>
+    </svg>
+  );
+}
+
+function BountyIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 16q-.825 0-1.412-.587T10 14t.588-1.412T12 12t1.413.588T14 14t-.587 1.413T12 16M7.375 7h9.25l2-4H5.375zM8.4 21h7.2q2.25 0 3.825-1.562T21 15.6q0-.95-.325-1.85t-.925-1.625L17.15 9H6.85l-2.6 3.125q-.6.725-.925 1.625T3 15.6q0 2.275 1.563 3.838T8.4 21"/>
+    </svg>
+  );
+}
+
+const SUBNAV_TABS = [
+  { label: 'Arrow',          path: '/docs',      to: '/docs/intro',  icon: <DocsIcon /> },
+  { label: 'Quiver',         path: '/quiver',    to: '/quiver',      icon: <QuiverIcon /> },
+  { label: 'Spearhead',        path: '/spearhead',        to: '/spearhead',        icon: <SpearheadIcon /> },
+  { label: 'Flight Tracking App',  path: '/flight-tracking',  to: '/flight-tracking',  icon: <FlightTrackingIcon /> },
+  { label: 'Bounty Board',     path: '/bounty',           to: '/bounty',           icon: <BountyIcon /> },
+];
+
+function SubNav() {
+  const {pathname} = useLocation();
+  const isDocPage = SUBNAV_TABS.some(t => pathname.startsWith(t.path));
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [showFade, setShowFade] = useState(false);
+
+  useEffect(() => {
+    const inner = innerRef.current;
+    if (!inner) return;
+
+    const checkFade = () => {
+      const isScrollable = inner.scrollWidth > inner.clientWidth;
+      const isAtEnd = inner.scrollLeft + inner.clientWidth >= inner.scrollWidth - 8;
+      setShowFade(isScrollable && !isAtEnd);
+    };
+
+    // Scroll active tab into view without scrolling the page
+    const activeTab = inner.querySelector(`[class*="subNavTabActive"]`) as HTMLElement;
+    if (activeTab) {
+      const tabRight = activeTab.offsetLeft + activeTab.offsetWidth;
+      const tabLeft = activeTab.offsetLeft;
+      if (tabRight > inner.clientWidth) {
+        inner.scrollLeft = tabRight - inner.clientWidth + 16;
+      } else if (tabLeft < inner.scrollLeft) {
+        inner.scrollLeft = tabLeft - 16;
+      }
+    }
+
+    checkFade();
+    inner.addEventListener('scroll', checkFade);
+    window.addEventListener('resize', checkFade);
+    return () => {
+      inner.removeEventListener('scroll', checkFade);
+      window.removeEventListener('resize', checkFade);
+    };
+  }, [pathname]);
+
+  if (!isDocPage) return null;
+
+  return (
+    <nav className={`${styles.subNav} ${showFade ? styles.subNavFade : ''}`}>
+      <div className={styles.subNavInner} ref={innerRef}>
+        {SUBNAV_TABS.map(tab => {
+          const isActive = pathname.startsWith(tab.path);
+          return (
+            <Link
+              key={`${tab.path}-${isActive}`}
+              to={tab.to}
+              className={`${styles.subNavTab} ${isActive ? styles.subNavTabActive : ''} ${tab.project && !isActive ? styles.subNavTabProject : ''}`}
+            >
+              {tab.icon}
+              <span>{tab.label}</span>
+            </Link>
+          );
+        })}
+      </div>
+      {showFade && (
+        <div className={styles.scrollArrow} aria-hidden>
+          <ChevronRightIcon />
+        </div>
+      )}
+    </nav>
+  );
+}
+
+function ReadingProgressBar() {
+  const [progress, setProgress] = useState(0);
+  const {pathname} = useLocation();
+  const isDocPage = SUBNAV_TABS.some(t => pathname.startsWith(t.path));
+
+  const update = useCallback(() => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    setProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+  }, []);
+
+  useEffect(() => {
+    if (!isDocPage) return;
+    window.addEventListener('scroll', update, {passive: true});
+    update();
+    return () => window.removeEventListener('scroll', update);
+  }, [isDocPage, update]);
+
+  if (!isDocPage) return null;
+
+  return (
+    <div className={styles.progressBar} aria-hidden>
+      <div className={styles.progressFill} style={{width: `${progress}%`}} />
+    </div>
+  );
+}
+
+function DocsNavbar() {
+  const openSidebar = () => {
+    const toggle = document.querySelector<HTMLButtonElement>('.navbar__toggle');
+    if (toggle) toggle.click();
+  };
+
+  return (
+    <nav className={styles.navbar}>
+      <div className={styles.navbarInner}>
+        {/* Mobile menu toggle */}
+        <button
+          className={`${styles.iconButton} ${styles.menuToggle}`}
+          type="button"
+          onClick={openSidebar}
+          aria-label="Open navigation menu"
+        >
+          <MenuIcon />
+        </button>
+
+        {/* Logo */}
+        <Link to="/docs/intro" className={styles.logo}>
+          <ArrowLogo />
+        </Link>
+
+        {/* Right Actions */}
+        <div className={styles.navActions}>
+          <div className={`${styles.tooltipWrapper} ${styles.desktopOnly}`}>
+            <Link
+              to="/docs/intro"
+              className={styles.iconButton}
+              aria-label="Docs home"
+            >
+              <DocsIcon />
+            </Link>
+            <span className={styles.tooltip}>Docs home</span>
+          </div>
+          <div className={`${styles.tooltipWrapper} ${styles.desktopOnly}`}>
+            <Link
+              to="/docs/intro"
+              className={styles.iconButton}
+              aria-label="About Arrow"
+            >
+              <BookIcon />
+            </Link>
+            <span className={styles.tooltip}>About Arrow</span>
+          </div>
+          <QuickLinksDropdown />
+          <div className={styles.searchWrapper}>
+            <SearchBar />
+          </div>
+          {/* Desktop: individual icon buttons */}
+          <div className={`${styles.tooltipWrapper} ${styles.desktopOnly}`}>
+            <a
+              href="https://github.com/Arrow-air"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.iconButton}
+              aria-label="GitHub"
+            >
+              <GitHubIcon />
+            </a>
+            <span className={styles.tooltip}>GitHub</span>
+          </div>
+          <div className={`${styles.tooltipWrapper} ${styles.desktopOnly}`}>
+            <a
+              href="https://discord.com/invite/arrow"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.iconButton}
+              aria-label="Discord"
+            >
+              <DiscordIcon />
+            </a>
+            <span className={styles.tooltip}>Discord</span>
+          </div>
+          {/* Mobile: combined dropdown */}
+          <div className={styles.mobileOnly}>
+            <LinksDropdown />
+          </div>
+          <ThemeToggle />
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export default function Navbar(props): JSX.Element {
+  return (
+    <>
+      <div className={styles.stickyHeader}>
+        <DocsNavbar />
+        <SubNav />
+      </div>
+      {/* Original navbar hidden visually but sidebar overlay remains functional */}
+      <div className={styles.hiddenNavbar}>
+        <NavbarOriginal {...props} />
+      </div>
+    </>
+  );
+}
