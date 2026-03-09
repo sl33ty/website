@@ -1,0 +1,39 @@
+.backToTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--ifm-background-color);
+  color: var(--docs-primary);
+  border: 1px solid var(--docs-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.15s ease;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.backToTop:hover {
+  background: var(--docs-primary);
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .backToTop {
+  background: var(--docs-bg);
+}
+
+:global([data-theme='dark']) .backToTop:hover {
+  background: var(--docs-primary);
+}

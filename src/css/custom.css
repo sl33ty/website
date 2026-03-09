@@ -35,7 +35,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Haas Grotesk';
+  font-family: 'IBM Plex Sans';
   src: url('/fonts/NHaasGroteskTXPro-55Rg.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
@@ -43,7 +43,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Haas Grotesk';
+  font-family: 'IBM Plex Sans';
   src: url('/fonts/NHaasGroteskTXPro-65Md.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
@@ -51,7 +51,7 @@
 }
 
 @font-face {
-  font-family: 'Neue Haas Grotesk';
+  font-family: 'IBM Plex Sans';
   src: url('/fonts/NHaasGroteskTXPro-75Bd.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
@@ -67,8 +67,19 @@ html, body {
     color: var(--bs-dark);
 }
 
+html {
+  scroll-padding-top: var(--ifm-navbar-height);
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+/* Prevent content headings from scrolling under sticky nav */
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: var(--ifm-navbar-height);
+}
+
 h1, h2, h3, h4, h5 {
-    font-family: 'Neue Haas Grotesk', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: bold;
 }
 
@@ -229,7 +240,7 @@ nav[class*="navbar"] > [class*="navbarInner"] {
   height: 36px;
   background-color: rgba(255, 255, 255, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  border-radius: 0 !important;
+  border-radius: 4px !important;
   color: #ffffff !important;
   padding: 0 2.5rem 0 2rem !important;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='rgba(255,255,255,0.5)' d='M6.5 1a5.5 5.5 0 0 1 4.38 8.82l3.66 3.66a.75.75 0 0 1-1.06 1.06l-3.66-3.66A5.5 5.5 0 1 1 6.5 1m0 1.5a4 4 0 1 0 0 8a4 4 0 0 0 0-8'/%3E%3C/svg%3E") !important;
@@ -510,8 +521,8 @@ h1, .h1 {
 
 /* Arrow brand colors */
 :root {
-    --bs-dark-rgb: 6, 5, 40;
-    --bs-dark: #060528;
+    --bs-dark-rgb: 4, 3, 20;
+    --bs-dark: #040314;
     --bs-light-rgb: 217, 215, 229;
     --bs-light: #d9d7e5;
     --bs-primary-rgb: 83, 82, 153;
@@ -524,8 +535,8 @@ h1, .h1 {
     --bs-blue-dark: #43428b;
     --bs-navy-rgb: 27, 20, 100;
     --bs-navy: #1b1464;
-    --bs-midnight-rgb: 6, 5, 40;
-    --bs-midnight: #060528;
+    --bs-midnight-rgb: 4, 3, 20;
+    --bs-midnight: #040314;
     --bs-lavender-rgb: 128, 134, 237;
     --bs-lavender: #8086ed;
     --bs-lavender-light: #c8c8e5;
@@ -536,11 +547,11 @@ h1, .h1 {
     --bs-gray: #cdcdcd;
     --bs-gray: #cdcdcd;
     --bs-gray-dark: #a6a6a6;
-    --bs-font-sans-serif: "Neue Haas Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --bs-font-sans-serif: "IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 
     /* IFM overrides */
 
-    --ifm-font-family-base: "Neue Haas Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --ifm-font-family-base: "IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     --ifm-h1-font-size: calc(1.375rem + 1.5vw);
     --ifm-h2-font-size: calc(1.325rem + 0.9vw);
     --ifm-h3-font-size: calc(1.3rem + 0.6vw);
@@ -553,7 +564,7 @@ h1, .h1 {
     --ifm-global-spacing: 1.5rem;
     --ifm-navbar-item-padding-horizontal: 0.4rem;
     --ifm-navbar-item-padding-vertical: 0.4rem;
-    --ifm-navbar-height: 5rem;
+    --ifm-navbar-height: 115px; /* 72px DocsNavbar + 43px SubNav */
 
     --ifm-color-primary: #535299;
     --ifm-color-secondary: #1b1464;
@@ -718,6 +729,7 @@ h1, .h1 {
   --docs-text: #1f2937;
   --docs-text-secondary: #4b5563;
   --docs-text-muted: #6b7280;
+  --docs-h1-rule: #b0b5be;
   --docs-border: #e5e7eb;
   --docs-bg: #ffffff;
   --docs-bg-subtle: #f9fafb;
@@ -733,10 +745,10 @@ h1, .h1 {
   --ifm-color-primary-light: #094cd3;
   --ifm-color-primary-lighter: #0a50dd;
   --ifm-color-primary-lightest: #1560f0;
-  --ifm-font-family-base: 'Neue Haas Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ifm-font-family-base: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --ifm-font-size-base: 16px;
   --ifm-line-height-base: 1.6;
-  --ifm-menu-color: var(--docs-text-secondary);
+  --ifm-menu-color: var(--docs-text-muted);
   --ifm-menu-color-active: var(--docs-primary);
   --ifm-menu-color-background-active: var(--docs-primary-light);
   --ifm-breadcrumb-item-background-active: transparent;
@@ -751,23 +763,49 @@ h1, .h1 {
   border-right: 3px double #d1d5db;
 }
 
+/* Navbar/subnav are sticky. sidebarViewport sticks at top:0 (Docusaurus native).
+   The sidebar_ wrapper carries padding-top:var(--ifm-navbar-height) so content
+   clears the navbars visually, and the menu adds a 2rem breathing gap. */
+[class*="sidebar_"] {
+  padding-top: var(--ifm-navbar-height) !important;
+}
+.theme-doc-sidebar-menu {
+  padding-top: 2rem !important;
+}
+
+[class*="sidebarViewport"] {
+  top: 0 !important;
+  max-height: 100vh !important;
+  scroll-padding-top: 5rem;
+}
+
+[class*="docSidebarContainer"] {
+  min-height: 100vh;
+}
+
+.theme-doc-toc-desktop {
+  top: calc(var(--ifm-navbar-height) + 2rem) !important;
+  max-height: calc(100vh - 2rem) !important;
+}
+
 /* Spacing between top-level sidebar sections */
 .theme-doc-sidebar-menu > .menu__list-item + .menu__list-item {
   margin-top: 1.5rem;
 }
 
-/* TOP-LEVEL category labels only - Departure Mono, allcaps, black */
+/* TOP-LEVEL category labels only - Neue Haas Grotesk, semibold */
 /* Target first-level menu items (direct children of the main sidebar list) */
 .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
 .theme-doc-sidebar-menu > .menu__list-item > .menu__list-item-collapsible > .menu__link,
 .theme-doc-sidebar-menu > li > .menu__list-item-collapsible > .menu__link,
 ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link {
-  font-family: 'Departure Mono', 'Jetbrainsmono', monospace !important;
-  font-size: 14px !important;
+  font-family: 'IBM Plex Sans', sans-serif !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
   font-weight: 500 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
-  color: #000000 !important;
+  letter-spacing: 0.06em !important;
+  color: #1D1D1D !important;
   padding: 0.5rem 0.75rem;
   padding-left: 1.75rem !important;
   position: relative;
@@ -810,7 +848,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 .menu__list .menu__list .menu__list-item > .menu__list-item-collapsible .menu__link,
 .menu__list .menu__list .menu__list-item-collapsible > .menu__link,
 .menu__list .menu__list .menu__list-item-collapsible .menu__link {
-  font-family: 'Neue Haas Grotesk', sans-serif !important;
+  font-family: 'IBM Plex Sans', sans-serif !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   text-transform: none !important;
@@ -820,7 +858,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 
 /* Menu links */
 .menu__link {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: var(--docs-text-secondary);
@@ -970,16 +1008,58 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   color: var(--docs-primary);
 }
 
+.padding-top--md {
+  padding-top: 1.5rem !important;
+}
+
 /* ==========================================================================
-   GLOBAL RESETS - No rounded corners
+   GLOBAL RESETS - Subtle rounded corners
    ========================================================================== */
 
+/* Default: no radius on everything in doc areas */
 .theme-doc-sidebar-container *,
 .theme-doc-markdown *,
 [class*="docMainContainer"] *,
 .alert *,
 .pagination-nav * {
   border-radius: 0 !important;
+}
+
+/* Small (2px): inline code, kbd, badges */
+.theme-doc-markdown code,
+[class*="docMainContainer"] code,
+[class*="docMainContainer"] kbd,
+[class*="docMainContainer"] .badge {
+  border-radius: 2px !important;
+}
+
+/* Larger (4px): code blocks, admonitions, tables, cards */
+.theme-doc-markdown pre,
+[class*="docMainContainer"] pre,
+[class*="docMainContainer"] table,
+[class*="docMainContainer"] [class*="codeBlockContainer"],
+[class*="docMainContainer"] [class*="cardContainer"] {
+  border-radius: 4px !important;
+}
+
+/* About Arrow cards: use their own border-radius */
+[class*="docMainContainer"] .about-card {
+  border-radius: 8px !important;
+}
+
+/* Long URLs and unbreakable strings wrap instead of overflowing */
+/* Long URLs wrap instead of overflowing */
+.theme-doc-markdown a {
+  overflow-wrap: anywhere !important;
+  display: inline;
+}
+
+/* Prevent flex children from overflowing their column into TOC */
+[class*="docItemContainer"],
+[class*="docItemCol"],
+[class*="docMainContainer"] .col,
+[class*="docMainContainer"] article {
+  min-width: 0;
 }
 
 /* ==========================================================================
@@ -997,7 +1077,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 [class*="docMainContainer"]:has([data-md-show-raw]) .table-of-contents,
 [class*="docMainContainer"]:has([data-md-show-raw]) .theme-doc-footer,
 [class*="docMainContainer"]:has([data-md-show-raw]) nav.pagination-nav,
-[class*="docMainContainer"]:has([data-md-show-raw]) .doc-end-bar-wrapper {
+[class*="docMainContainer"]:has([data-md-show-raw]) .doc-end-bar {
   display: none !important;
 }
 
@@ -1008,7 +1088,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 
 /* Main docs container - add padding and constrain width */
 .theme-doc-markdown {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: var(--docs-text-secondary);
@@ -1017,17 +1097,17 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   padding: .5rem 2rem;
 }
 
-/* Doc root - consistent top spacing for sidebar + content */
+/* Doc root - no top padding; sidebar uses its own wrapper padding to clear navbars */
 [class*="docRoot"] {
-  padding-top: 1rem;
+  padding-top: 0;
   padding-bottom: 1rem;
   max-width: 1600px;
   margin: 0 auto;
 }
 
-/* Doc page wrapper padding */
+/* Doc page wrapper padding — 1rem top aligns breadcrumb with sidebar first item */
 [class*="docMainContainer"] {
-  padding: 0 2rem 1rem 2rem;
+  padding: 1rem 2rem 1rem 2rem;
 }
 
 /* Tighten horizontal spacing on smaller viewports */
@@ -1041,6 +1121,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
   }
+
   [class*="breadcrumbsContainer"] {
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
@@ -1059,8 +1140,10 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   .pagination-nav {
     padding: 0 0.5rem !important;
   }
-  .doc-end-bar-wrapper {
-    padding: 0 0.5rem !important;
+  .doc-end-bar {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    padding: 0.875rem 0 !important;
   }
 }
 
@@ -1079,19 +1162,35 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 
 /* H1 — Page title. Bold sans-serif, double-rule underline */
 .theme-doc-markdown h1 {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--docs-text);
-  margin: 0 0 1.25rem 0;
-  padding-bottom: 0.625rem;
-  border-bottom: 3px double var(--docs-text);
+  margin: 0 0 1.75rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 3px double var(--docs-h1-rule);
   letter-spacing: -0.02em;
+}
+
+/* Page tagline — injected from frontmatter `description`, sits inside h1 above the double rule */
+article.has-description .theme-doc-markdown h1 {
+  flex-wrap: wrap !important; /* allow ::after to drop to its own row */
+}
+article.has-description .theme-doc-markdown h1::after {
+  content: var(--doc-description);
+  flex-basis: 100%; /* own row inside the flex h1 (set by MarkdownToggle) */
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  color: var(--docs-text-muted);
+  margin-top: 0.5rem;
 }
 
 /* H2 — Section header. Bold sans-serif, blue tinted background */
 .theme-doc-markdown h2 {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 1.8rem !important;
   font-weight: 700;
   color: var(--docs-primary);
@@ -1102,7 +1201,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 
 /* H3 — Subsection. Sans-serif with subtle underline */
 .theme-doc-markdown h3 {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 1.4rem;
   font-weight: 500;
   color: var(--docs-text);
@@ -1155,7 +1254,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 /* Strong & emphasis */
 .theme-doc-markdown strong {
   font-weight: 600;
-  color: var(--docs-text);
+  color: inherit;
 }
 
 .theme-doc-markdown em {
@@ -1207,24 +1306,35 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 
 .theme-doc-markdown ul,
 .theme-doc-markdown ol {
-  margin: 0 0 1rem 0;
+  margin: 1rem 0 1rem 0;
   padding-left: 1.25rem;
 }
 
 .theme-doc-markdown li {
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.5rem;
   line-height: 1.4;
+}
+
+.theme-doc-markdown li[role="tab"] {
+  margin-bottom: -1px;
 }
 
 .theme-doc-markdown ul {
   list-style-type: none;
 }
 
-.theme-doc-markdown ul > li::before {
-  content: "–";
+.theme-doc-markdown ul > li:not([role="tab"])::before {
+  content: "";
   position: absolute;
-  margin-left: -1rem;
-  color: var(--docs-text-muted);
+  display: block;
+  background-color: currentColor;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16'%3E%3Cpath fill-rule='evenodd' d='M0 7v2h8V7H0z'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  width: 0.5rem;
+  height: 1rem;
+  margin-left: -1.05rem;
+  top: 0.19em;
 }
 
 .theme-doc-markdown ul > li {
@@ -1249,7 +1359,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 .theme-doc-markdown ol ol,
 .theme-doc-markdown ul ol,
 .theme-doc-markdown ol ul {
-  margin: 0.25rem 0 0.25rem 0;
+  margin: 0.25rem 0 1rem 0;
 }
 
 /* Task lists */
@@ -1278,7 +1388,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   font-size: 13px;
   line-height: 1.5;
   padding: 1rem 1rem 1rem 0.5rem;
-  margin: 0 0 1rem 0;
+  margin: 0.5rem 0 1rem 0;
   background: var(--docs-bg-subtle);
   border: 1px solid #d0d3d7;
   box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.05);
@@ -1431,12 +1541,14 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 
 /* Base admonition — industrial label style */
 .alert {
+  --ifm-alert-border-radius: 0;
+  border-radius: 0 !important;
   --adm-bg: #f0efe8;
   --adm-border: #1f2937;
   --adm-text: var(--adm-border);
   background: var(--adm-bg);
-  border: 2px solid var(--adm-border);
-  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--adm-border);
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.08);
   padding: 0;
   margin: 2.5rem 0;
   color: var(--adm-text);
@@ -1464,7 +1576,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 /* Title bar — solid dark bar, white text, old OS window style */
 .alert [class*="admonitionHeading"] {
   font-family: 'Departure Mono', 'Jetbrainsmono', monospace !important;
-  font-size: 11px !important;
+  font-size: 13px !important;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -1475,7 +1587,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   color: #ffffff;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.1rem;
   position: relative;
 }
 
@@ -1493,6 +1605,66 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 .alert [class*="admonitionHeading"] svg {
   fill: #ffffff;
   color: #ffffff;
+}
+
+/* Admonition custom icons via mask-image (all use currentColor) */
+.alert--secondary [class*="admonitionHeading"] svg,
+.alert--info [class*="admonitionHeading"] svg,
+.alert--success [class*="admonitionHeading"] svg,
+.alert--warning [class*="admonitionHeading"] svg,
+.alert--danger [class*="admonitionHeading"] svg {
+  display: none !important;
+}
+
+.alert--secondary [class*="admonitionHeading"]::before,
+.alert--info [class*="admonitionHeading"]::before,
+.alert--success [class*="admonitionHeading"]::before,
+.alert--warning [class*="admonitionHeading"]::before,
+.alert--danger [class*="admonitionHeading"]::before {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  top: -1px;
+  background: currentColor;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+/* Note */
+.alert--secondary [class*="admonitionHeading"]::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M9.56,9.56v34.88h34.88V9.56H9.56ZM28.28,37.44h-13v-4.45h13v4.45ZM38.72,29.22H15.28v-4.45h23.44v4.45ZM38.72,21.01H15.28v-4.45h23.44v4.45Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M9.56,9.56v34.88h34.88V9.56H9.56ZM28.28,37.44h-13v-4.45h13v4.45ZM38.72,29.22H15.28v-4.45h23.44v4.45ZM38.72,21.01H15.28v-4.45h23.44v4.45Z'/%3E%3C/svg%3E");
+}
+
+/* Info */
+.alert--info [class*="admonitionHeading"]::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M9.56,9.56v34.88h34.88V9.56H9.56ZM29.83,40.01h-5.66v-17.39h5.66v17.39ZM29.83,19.46h-5.66v-4.69h5.66v4.69Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M9.56,9.56v34.88h34.88V9.56H9.56ZM29.83,40.01h-5.66v-17.39h5.66v17.39ZM29.83,19.46h-5.66v-4.69h5.66v4.69Z'/%3E%3C/svg%3E");
+}
+
+/* Tip */
+.alert--success [class*="admonitionHeading"]::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M25.34,9.89v4.43h3.32v-4.43h-3.32ZM18.24,17.38l-3.54-3.1-2.21,2.52,3.54,3.1,2.21-2.52ZM37.83,19.84l3.67-2.94-2.05-2.56-3.67,2.94,2.05,2.56ZM27,16.54c-4.37,0-8.07,3.21-8.69,7.54l-.02.16c-.33,2.33.26,4.72,1.71,6.58.87,1.11,1.46,2.18,1.46,3.24v4.65h11.09v-4.65c0-1.05.57-2.1,1.42-3.2,1.4-1.8,2.1-4.16,1.75-6.63l-.02-.16c-.62-4.32-4.32-7.54-8.69-7.54M10.37,28.16h4.43v-3.29h-4.43v3.29ZM39.19,28.16h4.43v-3.29h-4.43v3.29ZM23.67,44.69h6.65v-3.19h-6.65v3.19Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M25.34,9.89v4.43h3.32v-4.43h-3.32ZM18.24,17.38l-3.54-3.1-2.21,2.52,3.54,3.1,2.21-2.52ZM37.83,19.84l3.67-2.94-2.05-2.56-3.67,2.94,2.05,2.56ZM27,16.54c-4.37,0-8.07,3.21-8.69,7.54l-.02.16c-.33,2.33.26,4.72,1.71,6.58.87,1.11,1.46,2.18,1.46,3.24v4.65h11.09v-4.65c0-1.05.57-2.1,1.42-3.2,1.4-1.8,2.1-4.16,1.75-6.63l-.02-.16c-.62-4.32-4.32-7.54-8.69-7.54M10.37,28.16h4.43v-3.29h-4.43v3.29ZM39.19,28.16h4.43v-3.29h-4.43v3.29ZM23.67,44.69h6.65v-3.19h-6.65v3.19Z'/%3E%3C/svg%3E");
+}
+
+/* Caution */
+.alert--warning [class*="admonitionHeading"]::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M27,7.34L7.34,27l19.66,19.66,19.66-19.66L27,7.34ZM29.45,38.44h-4.91v-4.06h4.91v4.06ZM24.55,31.01v-15.2h4.91v15.2h-4.91Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M27,7.34L7.34,27l19.66,19.66,19.66-19.66L27,7.34ZM29.45,38.44h-4.91v-4.06h4.91v4.06ZM24.55,31.01v-15.2h4.91v15.2h-4.91Z'/%3E%3C/svg%3E");
+}
+
+/* Danger */
+.alert--danger [class*="admonitionHeading"]::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M9.43,9.43v35.13h35.13V9.43H9.43ZM23.46,40.01h-5.17v-4.45h5.17v4.45ZM23.46,32.16h-5.17V13.99h5.17v18.17ZM35.72,40.01h-5.17v-4.45h5.17v4.45ZM35.72,32.16h-5.17V13.99h5.17v18.17Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 54'%3E%3Cpath fill='currentColor' d='M9.43,9.43v35.13h35.13V9.43H9.43ZM23.46,40.01h-5.17v-4.45h5.17v4.45ZM23.46,32.16h-5.17V13.99h5.17v18.17ZM35.72,40.01h-5.17v-4.45h5.17v4.45ZM35.72,32.16h-5.17V13.99h5.17v18.17Z'/%3E%3C/svg%3E");
 }
 
 /* Content area */
@@ -1529,7 +1701,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 }
 
 /* Tip — green */
-.alert--tip {
+.alert--success {
   --adm-bg: #f0f7ec;
   --adm-border: #3d8b37;
 }
@@ -1665,39 +1837,69 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 }
 
 /* ==========================================================================
-   DETAILS / ACCORDION
+   DETAILS / ACCORDION  (shadcn "Accordion 2" card style)
+   Each item is an independent floating card. Shadow elevates on open.
    ========================================================================== */
 
 .theme-doc-markdown details,
 .theme-doc-markdown details[class*="details"] {
-  border: none !important;
-  background: none !important;
-  box-shadow: none !important;
-  margin: 0 0 1rem 0;
+  border: 1px solid var(--docs-border) !important;
+  background: var(--docs-bg) !important;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08) !important;
+  border-radius: 8px;
+  margin: 0 0 0.5rem 0;
   padding: 0;
+  transition: box-shadow 0.2s ease;
+}
+
+.theme-doc-markdown details[open],
+.theme-doc-markdown details[data-collapsed="false"] {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.10) !important;
 }
 
 .theme-doc-markdown summary {
   cursor: pointer;
-  padding: 0.4rem 0 0.4rem 1.25rem;
-  color: var(--docs-text);
-  font-size: 0.95rem;
-  background: none !important;
+  list-style: none;
   position: relative;
+  padding: 0.75rem 1.25rem 0.75rem 2.625rem !important; /* left = 1.25rem icon-left + 0.75rem icon-width + 0.625rem gap */
+  color: var(--docs-text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  background: transparent !important;
+  user-select: none;
+  transition: color 0.15s ease;
 }
 
-/* Hide Docusaurus custom arrow */
+.theme-doc-markdown summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Chevron — absolutely positioned with top:50%+translateY(-50%) for pixel-perfect vertical centering.
+   rotate(0deg) = › (closed), rotate(90deg) = ˅ (open) */
 .theme-doc-markdown summary::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 1.25rem !important;
+  top: 50% !important;
+  margin-top: -6px !important; /* -height/2: centers vertically independent of transform */
+  display: block !important;
+  width: 12px;
+  height: 12px;
+  background: currentColor !important;
+  opacity: 0.5;
   border: none !important;
-  content: '\203A' !important;
-  position: absolute;
-  left: 0;
-  top: 0.35rem;
-  font-size: 1.1em;
-  font-weight: 600;
-  color: var(--docs-text-muted);
-  transform: rotate(0deg);
-  transition: transform 0.15s ease;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M5 2L11 8L5 14' stroke='black' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter' fill='none'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M5 2L11 8L5 14' stroke='black' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter' fill='none'/%3E%3C/svg%3E");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  transform: rotate(0deg) !important;
+  transition: transform 0.2s ease, opacity 0.15s ease;
 }
 
 .theme-doc-markdown details[open] > summary::before,
@@ -1710,16 +1912,36 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 }
 
 .theme-doc-markdown summary:hover::before {
-  color: var(--docs-primary);
+  opacity: 0.8;
 }
 
-.theme-doc-markdown details[open] summary {
-  margin-bottom: 0.25rem;
+.theme-doc-markdown details[open] > summary,
+.theme-doc-markdown details[data-collapsed="false"] > summary {
+  border-bottom: 1px solid var(--docs-border);
 }
 
 .theme-doc-markdown details > *:not(summary) {
-  padding: 0 0 0 1.25rem;
+  padding: 0.875rem 1.25rem;
+  color: var(--docs-text-muted);
 }
+
+/* Remove Docusaurus' teal decoration line and reset its internal spacing */
+.theme-doc-markdown details {
+  --docusaurus-details-decoration-color: transparent;
+}
+
+.theme-doc-markdown [class*="collapsibleContent"] {
+  margin-top: 0 !important;
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+
+/* Override Docusaurus JS-set transition easing for smoother open/close */
+.theme-doc-markdown details > div {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 180ms !important;
+}
+
 
 /* ==========================================================================
    DEFINITION LISTS
@@ -1806,15 +2028,20 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 }
 
 .table-of-contents {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 12px;
   border-left: 1px solid var(--docs-border);
   padding-left: 0.75rem;
 }
 
+.table-of-contents > li > .table-of-contents__link {
+  color: var(--docs-text);
+}
+
 .table-of-contents__link {
   color: var(--docs-text-muted);
   display: block;
+  transition: color 0.15s ease;
   padding: 0.25rem 0;
   border: none;
 }
@@ -1837,6 +2064,91 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   bottom: 0;
   width: 2px;
   background: #0843BF;
+  animation: tocIndicator 0.2s ease forwards;
+}
+
+@keyframes tocIndicator {
+  from { transform: scaleY(0); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   TABS
+   ========================================================================== */
+
+/* Scroll wrapper so the ul can have overflow:visible (needed for the active tab
+   to overlap the panel's top border by 1px and visually connect to it) */
+.theme-tabs-container {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.theme-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: none;
+  padding-bottom: 0;
+  overflow: visible;
+  flex-wrap: nowrap;
+  margin-bottom: 0 !important;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs__item {
+  font-family: 'Departure Mono', 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--docs-text-muted);
+  padding: 5px 12px;
+  border: 1px solid var(--docs-border);
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  background: var(--docs-bg-subtle);
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 1;
+}
+
+.tabs__item:hover {
+  color: var(--docs-primary);
+  background: var(--docs-primary-light);
+}
+
+.tabs__item--active {
+  color: var(--docs-primary) !important;
+  background: var(--docs-bg) !important;
+  border-color: var(--docs-border) !important;
+  border-bottom-color: var(--docs-bg) !important;
+  font-weight: 500;
+  z-index: 2;
+}
+
+.tabs__item--active:hover {
+  background: var(--docs-bg) !important;
+}
+
+.theme-tabs-container .margin-top--md {
+  margin-top: 0 !important;
+}
+
+[role="tabpanel"] {
+  padding: 1.25rem !important;
+  margin-top: 0 !important;
+  border: 1px solid var(--docs-border) !important;
+  border-radius: 0 4px 4px 4px;
+  position: relative;
+  z-index: 0;
 }
 
 /* ==========================================================================
@@ -1853,7 +2165,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 .pagination-nav__link {
   border: 1px solid var(--docs-primary);
   padding: 0.75rem 1rem;
-  border-radius: 0;
+  border-radius: 4px !important;
   transition: background-color 0.15s ease;
 }
 
@@ -1871,7 +2183,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 }
 
 .pagination-nav__label {
-  font-family: 'Neue Haas Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--docs-primary);
@@ -1912,85 +2224,206 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
    END-OF-CONTENT BAR (Discord CTA + Edit button)
    ========================================================================== */
 
-.doc-end-bar-wrapper {
-  max-width: var(--docs-content-max-width);
-  margin: 1.5rem auto 0;
-  padding: 0 var(--ifm-spacing-horizontal);
+/* ==========================================================================
+   ABOUT CARDS (index page card grid)
+   ========================================================================== */
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--docs-border);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none !important;
+  color: inherit;
+  transition: transform 0.175s ease, border-color 0.175s ease !important;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--docs-primary);
+  text-decoration: none !important;
+}
+
+.about-card__image {
+  height: 120px;
+  flex-shrink: 0;
+}
+
+/* Card 1: Blueprint grid */
+.about-card__image--1 {
+  background:
+    linear-gradient(rgba(99,120,160,0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,120,160,0.25) 1px, transparent 1px),
+    linear-gradient(rgba(99,120,160,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,120,160,0.1) 1px, transparent 1px),
+    linear-gradient(160deg, #e8ecf4 0%, #d0d8ea 100%);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px, 100% 100%;
+}
+
+/* Card 2: Diagonal dashes */
+.about-card__image--2 {
+  background:
+    repeating-linear-gradient(
+      -55deg,
+      transparent 0px,
+      transparent 6px,
+      rgba(70,95,145,0.28) 6px,
+      rgba(70,95,145,0.28) 7px,
+      transparent 7px,
+      transparent 14px,
+      rgba(70,95,145,0.28) 14px,
+      rgba(70,95,145,0.28) 15px,
+      transparent 15px,
+      transparent 26px
+    ),
+    linear-gradient(160deg, #e2e8f4 0%, #d0daee 100%);
+}
+
+/* Card 3: Radar / sonar rings */
+.about-card__image--3 {
+  background:
+    repeating-radial-gradient(
+      circle at 50% 110%,
+      transparent 0px,
+      transparent 28px,
+      rgba(80,105,155,0.2) 28px,
+      rgba(80,105,155,0.2) 29px
+    ),
+    linear-gradient(160deg, #e4eaf5 0%, #ccd6ec 100%);
+}
+
+/* Card 4: Dot matrix */
+.about-card__image--4 {
+  background:
+    radial-gradient(circle, rgba(60,85,140,0.3) 1px, transparent 1px),
+    linear-gradient(160deg, #e4eaf4 0%, #d2daea 100%);
+  background-size: 18px 18px, 100% 100%;
+}
+
+.about-card__body {
+  padding: 1rem 1.25rem 1.25rem;
+  flex: 1;
+}
+
+.about-card__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--docs-text);
+  margin-bottom: 0.5rem;
+}
+
+.about-card__title::after {
+  content: '';
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  flex-shrink: 0;
+  background-color: var(--docs-primary);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7'/%3E%3Cpath d='M7 7h10v10'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7'/%3E%3Cpath d='M7 7h10v10'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  opacity: 1;
+  transform: translateX(0) translateY(0.5px);
+  transition: transform 0.175s ease !important;
+}
+
+.about-card:hover .about-card__title::after {
+  transform: translateX(2px) translateY(0.5px);
+}
+
+.about-card__title svg {
+  color: var(--docs-text-muted);
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .about-card__title svg {
+  color: var(--docs-text-secondary);
+}
+
+.about-card__desc {
+  font-size: 0.875rem;
+  color: var(--docs-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+@media (max-width: 768px) {
+  .about-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   END-OF-CONTENT BAR (Discord CTA + Edit button)
+   ========================================================================== */
 
 .doc-end-bar {
   display: flex;
   align-items: center;
-  gap: 0;
-  border: 1px solid var(--docs-border);
-  border-bottom: 3px solid var(--docs-border);
+  justify-content: space-between;
   background: var(--ifm-background-color);
+  margin: 2rem 40px 0;
+  padding: 0.875rem 0;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  border-top: 1px solid var(--docs-border);
 }
 
-/* Message text — sits flush left inside the bar */
 .doc-end-bar__message {
-  font-family: 'Jetbrainsmono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--docs-text-muted);
-  padding: 0.5rem 0.75rem;
-  white-space: nowrap;
-  flex-shrink: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--docs-primary);
 }
 
-/* "Discord" link within the message */
 .doc-end-bar__message a {
   color: var(--docs-primary);
   text-decoration: underline;
   text-underline-offset: 2px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .doc-end-bar__message a:hover {
-  color: var(--docs-primary);
-  text-decoration: underline;
+  opacity: 0.8;
 }
 
-/* Hash fill in the middle gap */
-.doc-end-bar__fill {
-  flex: 1;
-  align-self: center;
-  overflow: hidden;
-  font-family: 'Jetbrainsmono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--docs-border);
-  line-height: 1;
-  white-space: nowrap;
-  user-select: none;
-}
-
-/* Edit button — bordered pill at right end */
 .theme-edit-this-page {
-  font-family: 'Jetbrainsmono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--docs-text-muted) !important;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--docs-primary) !important;
   text-decoration: none !important;
-  border: 1px solid var(--docs-border) !important;
-  padding: 0.375rem 0.75rem;
-  margin: 0.35rem 0.5rem;
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  background: var(--ifm-background-color);
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: opacity 0.15s ease;
   white-space: nowrap;
   flex-shrink: 0;
+  border: none !important;
+  margin: 0 !important;
+  background: transparent;
 }
 
 .theme-edit-this-page:hover {
+  opacity: 0.75;
   color: var(--docs-primary) !important;
-  border-color: var(--docs-primary) !important;
 }
 
 .theme-edit-this-page svg {
@@ -1998,26 +2431,12 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   height: 12px;
 }
 
-/* End bar mobile responsive */
 @media (max-width: 996px) {
   .doc-end-bar {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
     text-align: center;
-  }
-
-  .doc-end-bar__message {
-    white-space: normal;
-    flex-shrink: 1;
-    width: 100%;
-  }
-
-  .doc-end-bar__fill {
-    display: none;
-  }
-
-  .theme-edit-this-page {
-    margin: 0 auto 0.5rem;
+    padding: 1rem;
   }
 }
 
@@ -2203,7 +2622,8 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
    ========================================================================== */
 
 .theme-doc-toc-mobile {
-  margin: 0.75rem 0 1.25rem !important;
+  max-width: var(--docs-content-max-width);
+  margin: 0.75rem auto 1.25rem !important;
   background: rgba(8, 67, 191, 0.05) !important;
   border: 1px solid var(--docs-border);
   border-bottom: 3px solid var(--docs-border);
@@ -2259,9 +2679,10 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 [class*="breadcrumbsContainer"] {
   max-width: var(--docs-content-max-width);
   margin: 0 auto 0.5rem;
-  padding: 0 2rem;
+  padding: 0.5rem 2rem 0;
   width: 100%;
 }
+
 
 /* Generated index pages - breadcrumbs match full-width card layout */
 [class*="generatedIndexPage"] [class*="breadcrumbsContainer"] {
@@ -2271,8 +2692,9 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 }
 
 .breadcrumbs {
-  font-family: 'Departure Mono', 'Jetbrainsmono', monospace;
-  font-size: 9px;
+  font-family: 'Departure Mono', 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding-left: 0 !important;
@@ -2282,7 +2704,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   padding-left: 0;
 }
 
-.breadcrumbs__item:first-child:last-child .breadcrumbs__link {
+.breadcrumbs__item:first-child:last-child:not(.breadcrumbs__item--active) .breadcrumbs__link {
   padding-left: 0;
 }
 
@@ -2293,7 +2715,8 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 .breadcrumbs__link {
   color: var(--docs-text-muted);
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 1px 6px;
+  font-size: 11px !important;
 }
 
 .breadcrumbs__link:hover {
@@ -2335,9 +2758,10 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 [data-theme='dark'] {
   --docs-primary: #5b8dee;
   --docs-primary-light: rgba(91, 141, 238, 0.12);
-  --docs-text: #f3f4f6;
+  --docs-text: #e5e7eb;
   --docs-text-secondary: #d1d5db;
   --docs-text-muted: #9ca3af;
+  --docs-h1-rule: #6b7280;
   --docs-border: #374151;
   --docs-bg: #111827;
   --docs-bg-subtle: #1f2937;
@@ -2492,7 +2916,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   --adm-text: #e5e7eb;
 }
 
-[data-theme='dark'] .alert--tip {
+[data-theme='dark'] .alert--success {
   --adm-bg: #0c1a35;
   --adm-border: #2d7a4a;
   --adm-text: #d1fae5;
@@ -2534,10 +2958,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   background: var(--docs-primary);
 }
 
-/* --- Dark mode: H1 title underline --- */
-[data-theme='dark'] .theme-doc-markdown h1 {
-  border-bottom-color: rgba(255, 255, 255, 0.25);
-}
+/* --- Dark mode: H1 title underline uses --docs-h1-rule defined in dark vars above --- */
 
 /* --- Dark mode: Blockquotes --- */
 [data-theme='dark'] .theme-doc-markdown blockquote {
@@ -2555,37 +2976,18 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   background-color: rgba(91, 141, 238, 0.08);
 }
 
-/* --- Dark mode: End bar (Discord CTA + Edit button) --- */
-[data-theme='dark'] .doc-end-bar {
-  border-color: var(--docs-border);
-  background: var(--docs-bg);
-}
-
-[data-theme='dark'] .doc-end-bar__fill {
-  color: var(--docs-border);
-}
-
-[data-theme='dark'] .theme-edit-this-page {
-  border-color: var(--docs-border) !important;
-  background: var(--docs-bg);
-}
 
 /* --- Dark mode: Details/accordion --- */
-[data-theme='dark'] .theme-doc-markdown summary {
-  color: var(--docs-text);
+[data-theme='dark'] .theme-doc-markdown details,
+[data-theme='dark'] .theme-doc-markdown details[class*="details"] {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.30), 0 1px 2px -1px rgb(0 0 0 / 0.30) !important;
 }
+[data-theme='dark'] .theme-doc-markdown details[open],
+[data-theme='dark'] .theme-doc-markdown details[data-collapsed="false"] {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.40), 0 2px 4px -2px rgb(0 0 0 / 0.40) !important;
+}
+/* Chevron uses currentColor + opacity — no colour override needed in dark mode */
 
-[data-theme='dark'] .theme-doc-markdown summary::before {
-  color: var(--docs-text-muted);
-}
-
-[data-theme='dark'] .theme-doc-markdown summary:hover {
-  color: var(--docs-primary);
-}
-
-[data-theme='dark'] .theme-doc-markdown summary:hover::before {
-  color: var(--docs-primary);
-}
 
 /* --- Dark mode: Breadcrumb separator --- */
 [data-theme='dark'] .breadcrumbs__item--active .breadcrumbs__link {
@@ -2628,7 +3030,7 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
 .navbar__search-input {
   background-color: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius: 0 !important;
+  border-radius: 4px !important;
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
@@ -2641,20 +3043,26 @@ ul.theme-doc-sidebar-menu > li > .menu__list-item-collapsible .menu__link::befor
   outline: none !important;
 }
 
+/* Search clear (X) button */
+[class*="searchClearButton"] {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+[class*="searchClearButton"]:hover {
+  color: #ffffff !important;
+}
+
+/* Search results dropdown — must be above subnav (z-index: 300) */
+[class*="dropdownMenu"] {
+  z-index: 400 !important;
+}
+
 /* Search keyboard shortcut hints */
 kbd[class*="searchHint"] {
   background-color: rgba(255, 255, 255, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-bottom-width: 2px !important;
   border-radius: 3px !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  box-shadow: none !important;
-}
-
-[data-theme='dark'] kbd[class*="searchHint"] {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  border-bottom-width: 2px !important;
   color: rgba(255, 255, 255, 0.6) !important;
   box-shadow: none !important;
 }

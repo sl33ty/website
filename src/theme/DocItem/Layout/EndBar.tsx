@@ -17,32 +17,27 @@ function GitHubIcon(): ReactNode {
 
 function EndBarContent({editUrl}: {editUrl?: string}): ReactNode {
   return (
-    <div className="doc-end-bar-wrapper">
-      <div className="doc-end-bar">
-        <span className="doc-end-bar__message">
-          Questions? Just ask{' '}
-          <a
-            href="https://discord.com/invite/arrow"
-            target="_blank"
-            rel="noopener noreferrer">
-            Discord
-          </a>
-          {' '}&mdash; we're happy to help
-        </span>
-        <span className="doc-end-bar__fill" aria-hidden="true">
-          {'#'.repeat(80)}
-        </span>
-        {editUrl && (
-          <a
-            href={editUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="theme-edit-this-page">
-            <GitHubIcon />
-            Edit this page
-          </a>
-        )}
-      </div>
+    <div className="doc-end-bar">
+      <span className="doc-end-bar__message">
+        We build in public. Questions? Ask on{' '}
+        <a
+          href="https://discord.com/invite/arrow"
+          target="_blank"
+          rel="noopener noreferrer">
+          Discord
+        </a>
+        {' '}- we'd love to hear from you!
+      </span>
+      {editUrl && (
+        <a
+          href={editUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="theme-edit-this-page">
+          <GitHubIcon />
+          Edit this page
+        </a>
+      )}
     </div>
   );
 }
